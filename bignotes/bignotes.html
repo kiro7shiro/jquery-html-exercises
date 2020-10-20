@@ -18,7 +18,8 @@
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src = "bignotes_myjqplugin.js"></script>
-<script src = "bignotes.js"></script>
+<!-- <script src = "bignotes.js"></script> -->
+<script src="./Bignote2.js" type="module"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 </head>
@@ -28,7 +29,9 @@
 
         <!-- <button id="load_data">Load Data</button> -->
 
-        <div id="0001" class="bignote">
+        <!--  Using Numbers as IDs is bad practice
+              so I changed the id to something more menaingful    -->
+        <div id="bignote" class="bignote">
             <div class="field_big c1">
                 <div class="highlighter">
                     CSS
