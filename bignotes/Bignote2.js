@@ -1,3 +1,4 @@
+// use ES6 class syntax for better reading
 class NotePointer {
     constructor(link, list) {
         // I don't have any idea what purpose this class should have.
@@ -11,6 +12,7 @@ class Note extends NotePointer {
     // A note represents a textfield on the screen
     // It extends NotePointer since they both share the same properties.
     constructor(root, link = '.field_big' ) { // you can use default parameters like this
+        // calling the base class via super() before initalizing this instance
         super(link, [root])
         this.pointers = {
             top : new NotePointer('.field_top', []),
@@ -29,16 +31,14 @@ class Note extends NotePointer {
 }
 
 // define the application namespace
-// use ES6 class syntax for better reading
 class BigNoteApp {
+    // !! please insert a project desciption here !!
+    // what should the program do?
     constructor() {
-
         //define application state vars
         this.selected_last = undefined
         this.store_id = 'bignotes_'
-
-        // using template strings to generate new html elements
-        // in one go
+        // using template strings to generate new html elements in one go
         const buttons = `<div class="highbuttons">
                         <button class="b1_load">load</button>  
                         <button class="b2_save">save</button>  
@@ -47,13 +47,11 @@ class BigNoteApp {
         // create the new element
         let highbuttons = document.createElement('div')
         highbuttons.innerHTML = buttons
-
         // setting up event handlers
         highbuttons.querySelector('.b1_load').addEventListener('click', event => {
             const data = JSON.parse(localStorage.getItem(this.store_id))
             console.log(data)
         })
-
         highbuttons.querySelector('.b2_save').addEventListener('click', event => {
             const root = document.querySelector('#bignote .highlighter')
             let note = new Note(root) // no need to set the second parameter, since we setup a default value
@@ -61,7 +59,7 @@ class BigNoteApp {
             localStorage.setItem(this.store_id, JSON.stringify(note))
             console.log('saved as :', this.store_id)
         })
-
+        // append new elements
         document.querySelector('#bignote .highlighter').append(highbuttons)
 
         // setting up global event handlers
@@ -80,27 +78,25 @@ class BigNoteApp {
             })
         })
 
-        document.querySelector('.bignote').addEventListener('wheel', event => {
-            console.log(this, event, event.target)
-            if (event.deltaY < 0) {
-                var xx = $(this).find('.field_bottom ul').children('li').last().clone(true)
-    
-                var xx = $(this).find('.field_right ul').shiftListUp(xx)
-                var xx = $(this).find('.field_top ul').shiftListUp(xx)
-                var xx = $(this).find('.field_left ul').shiftListDown(xx)
-                var xx = $(this).find('.field_bottom ul').shiftListDown(xx)
-            }else{
-                var xx = $(this).find('.field_top ul').children('li').last().clone(true)
-    
-                var xx = $(this).find('.field_right ul').shiftListDown(xx)
-                var xx = $(this).find('.field_bottom ul').shiftListUp(xx)
-                var xx = $(this).find('.field_left ul').shiftListUp(xx)
-                var xx = $(this).find('.field_top ul').shiftListDown(xx)
-            }  
+        document.querySelectorAll('.bignote').forEach(element => {
+            element.addEventListener('wheel', event => {
+                // findig the host element
+                let [host] = event.path.filter(element => {
+                    if (element.classList) return element.classList.contains('bignote')
+                    return false
+                })
+                if (event.deltaY > 0) {
+                    // rotate counter clockwise
+                    
+                }else{
+                    // rotate clockwise
+                    host.querySelector('')
+                }
+                
+            })
         })
  
     }
-
 }
 
 export { BigNoteApp }
