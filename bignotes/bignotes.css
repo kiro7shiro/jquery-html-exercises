@@ -1,5 +1,5 @@
 
-@import "wholescreen.css";
+@import "../wholescreen/wholescreen.css";
 
 body {
     overflow: auto;
