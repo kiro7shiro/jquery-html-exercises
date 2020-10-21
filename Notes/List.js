@@ -12,7 +12,7 @@ class List {
      * @memberof List
      */
     constructor(name, element) {
-        if(!element) throw new Error('element must be given!')
+        if(!element) element = document.createElement('ul')
         this.addButton = undefined
         this.inputBox = undefined
         this.element = element
