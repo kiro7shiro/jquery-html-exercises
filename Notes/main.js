@@ -1,4 +1,5 @@
 import { List } from './List.js'
+import { Note } from './Note.js'
 
 // app starts here
 let view = document.querySelector('body')
@@ -22,6 +23,9 @@ list.shiftUp(up)
 list.save()
 let list2 = new List('test2', document.createElement('ul'))
 list2.load('test')
+// test note
+let note = new Note()
+view.append(note.element)
 // attach test instances to window for convience
 window.list = list
 window.list2 = list2
