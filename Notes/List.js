@@ -21,8 +21,14 @@ class List {
         this.element.addEventListener('mouseleave', this.mouseLeave.bind(this))
         this.name = name
     }
+    get first() {
+        return this.items[0].firstElementChild
+    }
     get items() {
         return this.element.children
+    }
+    get last() {
+        return this.items[this.items.length - 1].firstElementChild
     }
     append(text) {
         const item = new ListItem(text)
@@ -72,11 +78,15 @@ class List {
     }
     shiftDown(element) {
         this.prepend(element.innerHTML)
+        let last = this.element.lastElementChild.firstElementChild.innerHTML
         this.element.lastElementChild.remove()
+        return last
     }
     shiftUp(element) {
         this.append(element.innerHTML)
+        let first = this.element.firstElementChild.firstElementChild.innerHTML
         this.element.firstElementChild.remove()
+        return first
     }
     toArray() {
         const result = []

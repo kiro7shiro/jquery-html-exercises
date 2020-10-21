@@ -35,3 +35,4 @@ console.log(note)
 // attach test instances to window for convience
 window.list = list
 window.list2 = list2
+window.note = note
