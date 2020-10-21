@@ -3,8 +3,8 @@
 - notes have five areas top, right, bottom, left, center
 - areas are unordered lists
 
-### GOAL
-- establish CRUD operations for notes
+### GOALS
 - use mvc pattern
-- use localStorage
 - don't try to use routers
+- establish CRUD operations for notes
+- use localStorage
